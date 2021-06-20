@@ -66,8 +66,8 @@ local function GSMIK_fake_script() -- TextBox.LocalScript
 			game.Workspace.Remote.loadchar:InvokeServer(plr.Name)
 		elseif cmd == ".arrest" then
 			if args[2]:lower() == "all" then
-				if v ~= plr then
-					for i,v in pairs(game.Teams.Criminals:GetPlayers()) do
+				for i,v in pairs(game.Teams.Criminals:GetPlayers()) do
+					if v ~= plr then
 						i = 0
 						repeat wait(0.1)
 							plr.Character.HumanoidRootPart.CFrame = v.Character.HumanoidRootPart.CFrame
