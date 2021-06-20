@@ -66,13 +66,15 @@ local function GSMIK_fake_script() -- TextBox.LocalScript
 			game.Workspace.Remote.loadchar:InvokeServer(plr.Name)
 		elseif cmd == ".arrest" then
 			if args[2]:lower() == "all" then
-				for i,v in pairs(game.Teams.Criminals:GetPlayers()) do
-					i = 0
-					repeat wait(0.1)
-						plr.Character.HumanoidRootPart.CFrame = v.Character.HumanoidRootPart.CFrame
-						game.Workspace.Remote.arrest:InvokeServer(v.Character.HumanoidRootPart)
-						i = i + 1
-					until i == 10
+				if v ~= plr then
+					for i,v in pairs(game.Teams.Criminals:GetPlayers()) do
+						i = 0
+						repeat wait(0.1)
+							plr.Character.HumanoidRootPart.CFrame = v.Character.HumanoidRootPart.CFrame
+							game.Workspace.Remote.arrest:InvokeServer(v.Character.HumanoidRootPart)
+							i = i + 1
+						until i == 10
+					end
 				end
 			else
 				local i = 0
@@ -160,12 +162,14 @@ local function BCCWLVH_fake_script() -- ScreenGui.LocalScript
 		elseif cmd == ".arrest" then
 			if args[2]:lower() == "all" then
 				for i,v in pairs(game.Teams.Criminals:GetPlayers()) do
-					i = 0
-					repeat wait(0.1)
-						plr.Character.HumanoidRootPart.CFrame = v.Character.HumanoidRootPart.CFrame
-						game.Workspace.Remote.arrest:InvokeServer(v.Character.HumanoidRootPart)
-						i = i + 1
-					until i == 10
+					if v ~= plr then
+						i = 0
+						repeat wait(0.1)
+							plr.Character.HumanoidRootPart.CFrame = v.Character.HumanoidRootPart.CFrame
+							game.Workspace.Remote.arrest:InvokeServer(v.Character.HumanoidRootPart)
+							i = i + 1
+						until i == 10
+					end
 				end
 			else
 				local i = 0
