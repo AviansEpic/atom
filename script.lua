@@ -35,7 +35,7 @@ plr.Chatted:Connect(function(msg)
         elseif arg == "criminal" then
             weld02 = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
             game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-919.958, 95.327, 2138.189)
-            wait(0.075)
+            wait(2)
             game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(weld02)
         elseif arg == "neutral" then
             game.Workspace.Remote.TeamEvent:FireServer("Medium stone grey")
@@ -45,15 +45,51 @@ plr.Chatted:Connect(function(msg)
     elseif cmd == ".re" then
         game.Workspace.Remote.loadchar:InvokeServer(plr.Name)
     elseif cmd == ".arrest" then
-        local i = 0
+        if args[2]:lower() == "all" then
+            for i,v in pairs(game.Teams.Criminals:GetPlayers()) do
+                i = 0
+                repeat wait(0.1)
+                   plr.Character.HumanoidRootPart.CFrame = v.Character.HumanoidRootPart.CFrame
+                   game.Workspace.Remote.arrest:InvokeServer(v.Character.HumanoidRootPart)
+                   i = i + 1
+                until i == 10
+            end
+        else
+            local i = 0
+            local player = findplayer(args[2])
+            local pos = plr.Character.HumanoidRootPart.Position
+            repeat wait(0.1)
+                plr.Character.HumanoidRootPart.CFrame = player.Character.HumanoidRootPart.CFrame
+                game.Workspace.Remote.arrest:InvokeServer(player.Character.HumanoidRootPart)
+                i = i + 1
+            until i == 10
+            plr.Character.HumanoidRootPart.CFrame = CFrame.new(pos)
+        end
+    elseif cmd == ".to" then
         local player = findplayer(args[2])
-        local pos = plr.Character.HumanoidRootPart.Position
-        repeat wait(0.1)
-            plr.Character.HumanoidRootPart.CFrame = player.Character.HumanoidRootPart.CFrame
-            game.Workspace.Remote.arrest:InvokeServer(player.Character.HumanoidRootPart)
-            i = i + 1
-        until i == 10
-        plr.Character.HumanoidRootPart.CFrame = CFrame.new(pos)
+        plr.Character.HumanoidRootPart.CFrame = player.Character.HumanoidRootPart.CFrame
+    elseif cmd == ".noclip" then
+        noclip = not noclip
+    elseif cmd == ".walkspeed" then
+        if args[2] == nil then chat:FireServer("No number found!") end
+        plr.Character.Humanoid.WalkSpeed = tonumber(args[2])
+    elseif cmd == ".jumppower" then
+        if args[2] == nil then chat:FireServer("No number found!") end
+        plr.Character.Humanoid.UseJumpPower = true
+        plr.Character.Humanoid.JumpPower = tonumber(args[2])
+    elseif cmd == ".serverhop" then
+        local Servers = game.HttpService:JSONDecode(game:HttpGet("https://games.roblox.com/v1/games/"..game.PlaceId.."/servers/Public?sortOrder=Asc&limit=100"))
+        for i,v in pairs(Servers.data) do
+            if v.playing ~= v.maxPlayers then
+                game:GetService('TeleportService'):TeleportToPlaceInstance(game.PlaceId, v.id)
+            end
+        end
+    end
+end)
+
+game:GetService("RunService").RenderStepped:Connect(function()
+    if noclip then
+       plr.Character.Humanoid:ChangeState(11) 
     end
 end)
 
