@@ -1,0 +1,36 @@
+Prefix: .
+Be aware this script does not support display names use usernames instead when typing a players name
+
+.give <gun> (Gives you the gun you specify)
+Example: .give M9
+
+.changeteam <team> (Changes your team to the specified team)
+Example: .changeteam gaurd
+
+.rejoin (Rejoins the server you are currently in)
+Example: .rejoin
+
+.serverhop (Joins a new server)
+Example: .serverhop
+
+.re (Resets your character)
+Example: .re
+
+.arrest <player (or all)> (Arrests the person you select or everyone)
+Example: .arrest noobguy123
+
+.to <player> (Teleports you to specified player)
+Example: .to noobguy123
+
+.noclip (Toggles noclip)
+Example: .noclip
+
+.walkspeed <number> (Sets your WalkSpeed/speed to the specified number)
+Example: .walkspeed 30
+
+.jumppower <number> (Sets your JumpPower to the specified number)
+Example: .jumppower 100
+
+Suggest new commands at https://discord.gg/ZNHJnRmV
+
+Thanks for using Atom!!
