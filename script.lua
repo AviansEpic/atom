@@ -37,6 +37,8 @@ plr.Chatted:Connect(function(msg)
             game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-919.958, 95.327, 2138.189)
             wait(0.075)
             game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(weld02)
+        elseif arg == "neutral" then
+            game.Workspace.Remote.TeamEvent:FireServer("Medium stone grey")
         end
     elseif cmd == ".rejoin" then
         game:GetService("TeleportService"):Teleport(game.PlaceId)
