@@ -31,6 +31,9 @@ Example: .walkspeed 30
 .jumppower <number> (Sets your JumpPower to the specified number)
 Example: .jumppower 100
 
+.nodoors (Removes all doors)
+Example: .nodoors
+
 Suggest new commands at https://discord.gg/ZNHJnRmV
 
 Thanks for using Atom!!
